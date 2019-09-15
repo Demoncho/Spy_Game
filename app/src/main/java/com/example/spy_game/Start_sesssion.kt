@@ -1,5 +1,6 @@
 package com.example.spy_game
 
+import android.content.Intent
 import android.content.Intent.getIntent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,6 +32,15 @@ class Start_sesssion : AppCompatActivity() {
                         text_place.text = ""
                         button.text = "Получить место"
                     }
+                }
+                else if (button.text=="Поехали"){
+                    val start_timer = Intent(this, Timer::class.java)
+                    startActivity(start_timer)
+                }
+                else {
+                    text_place.text = ""
+                    text_number_of_player.text=""
+                    button.text ="Поехали"
                 }
             }
     }

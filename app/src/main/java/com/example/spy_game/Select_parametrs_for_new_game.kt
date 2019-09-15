@@ -33,8 +33,8 @@ class Select_parametrs_for_new_game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_parametrs_for_new_game)
 
-        slider_players = findViewById(R.id.seekBar_count_of_players) as SeekBar
-        value_players = findViewById(R.id.count_of_players_text) as TextView
+        slider_players = findViewById(R.id.seekBar_count_of_players)
+        value_players = findViewById(R.id.count_of_players_text)
 
         slider_players.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
