@@ -1,7 +1,9 @@
 package com.example.spy_game
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.SeekBar
 import android.widget.TextView
 
@@ -12,6 +14,20 @@ class Select_parametrs_for_new_game : AppCompatActivity() {
 
     lateinit var slider_time: SeekBar
     lateinit var value_time: TextView
+
+    fun start_game_with_param(view: View){
+
+        val players = findViewById(R.id.count_of_players_text) as TextView
+        val players_number = players.text.toString().takeLast(1)
+
+        val time = findViewById(R.id.count_of_time_text) as TextView
+        val time_number = time.text.toString().takeLast(1)
+
+        val start_game = Intent(this, Start_sesssion::class.java)
+        start_game.putExtra("players", players_number)
+        start_game.putExtra("time", time_number)
+        startActivity(start_game)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
