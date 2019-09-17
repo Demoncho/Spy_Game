@@ -10,7 +10,10 @@ import android.widget.TextView
 
 class Start_sesssion : AppCompatActivity() {
 
-    val name_of_locations = arrayListOf<String>("Школа","Банк","Университет","Больница","Пляж")
+    val name_of_locations = arrayListOf<String>("Школа","Банк","Университет","Больница","Пляж","База террористов","Киностудия","Партизанский отряд","Полярная станция",
+                                                "Супермаркет","Корпоративная вечеринка","Пассажирский поезд","Посольство","Театр","Овощебаза","Пиратский корабль","Ресторан",
+                                                "Воинская часть","Океанский лайнер","Самолет","Церковь","Войско крестоносцев","Орбитальная станция","Подводная лодка",
+                                                "Спа-салон","Цирк-шапито","Казино","Отель","Полицейский участок","Станция техобслуживания")
 
     fun start_game(players: String, time: String){
         val button = findViewById(R.id.button_get_info) as Button
@@ -35,6 +38,7 @@ class Start_sesssion : AppCompatActivity() {
                 }
                 else if (button.text=="Поехали"){
                     val start_timer = Intent(this, Timer::class.java)
+                    start_timer.putExtra("time", time)
                     startActivity(start_timer)
                 }
                 else {

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 
@@ -50,8 +51,8 @@ class Select_parametrs_for_new_game : AppCompatActivity() {
             }
         })
 
-        slider_time = findViewById(R.id.seekBar_count_of_time) as SeekBar
-        value_time = findViewById(R.id.count_of_time_text) as TextView
+        slider_time = findViewById(R.id.seekBar_count_of_time)
+        value_time = findViewById(R.id.count_of_time_text)
 
         slider_time.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
