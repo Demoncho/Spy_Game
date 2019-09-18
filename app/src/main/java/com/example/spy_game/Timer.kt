@@ -1,9 +1,11 @@
 package com.example.spy_game
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import org.w3c.dom.Text
@@ -12,6 +14,7 @@ class Timer : AppCompatActivity() {
 
     lateinit var timer_text: TextView
     lateinit var pause_button: Button
+    lateinit var reveal_spy_button: Button
     internal lateinit var countdown_timer: CountDownTimer
     private var running_timer: Boolean = false
     var time_of_game: Long = 0
@@ -59,7 +62,11 @@ class Timer : AppCompatActivity() {
         timer_text.text = time_left
     }
 
-
+    fun reveal_list(view : View){
+        stop_timer()
+        val list_of_places = Intent(this, List_of_places:: class.java  )
+        startActivity(list_of_places)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,8 +74,11 @@ class Timer : AppCompatActivity() {
         val time_intent = getIntent()
         time_of_game = time_intent.getStringExtra("time").toLong() * 60000
         timer_text = findViewById(R.id.timer_text)
+        reveal_spy_button = findViewById(R.id.reveal_spy_button)
         pause_button = findViewById(R.id.pause_button)
         pause_button.setOnClickListener {
+            reveal_spy_button.visibility = View.VISIBLE
+            reveal_spy_button.isClickable = true
             start_stop()
         }
         update_timer()

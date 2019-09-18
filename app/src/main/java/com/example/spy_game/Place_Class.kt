@@ -1,7 +1,9 @@
 package com.example.spy_game
 
 class Place_Class(val place: String, val count_of_players: Int){
+
     private var array_of_places = arrayListOf<String>()
+
     init{
         array_of_places.add("Шпион")
         for (i in 1..count_of_players-1)

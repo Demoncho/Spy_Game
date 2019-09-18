@@ -10,17 +10,21 @@ import android.widget.TextView
 
 class Start_sesssion : AppCompatActivity() {
 
-    val name_of_locations = arrayListOf<String>("Школа","Банк","Университет","Больница","Пляж","База террористов","Киностудия","Партизанский отряд","Полярная станция",
+    val name_of_locations = arrayOf("Школа","Банк","Университет","Больница","Пляж","База террористов","Киностудия","Партизанский отряд","Полярная станция",
                                                 "Супермаркет","Корпоративная вечеринка","Пассажирский поезд","Посольство","Театр","Овощебаза","Пиратский корабль","Ресторан",
                                                 "Воинская часть","Океанский лайнер","Самолет","Церковь","Войско крестоносцев","Орбитальная станция","Подводная лодка",
                                                 "Спа-салон","Цирк-шапито","Казино","Отель","Полицейский участок","Станция техобслуживания")
+
+    val place_id = (0..name_of_locations.size-1).shuffled().first()
 
     fun start_game(players: String, time: String){
         val button = findViewById(R.id.button_get_info) as Button
         val text_number_of_player = findViewById(R.id.text_of_info) as TextView
         val text_place = findViewById(R.id.text_name_of_place) as TextView
 
-        val place_id = (0..name_of_locations.size-1).shuffled().first()
+        val list_of_placess = Intent(this, List_of_places::class.java)
+        list_of_placess.putExtra("id", name_of_locations[place_id])
+
         val game = Place_Class(name_of_locations[place_id],players.toInt())
 
         var i = 1
