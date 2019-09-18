@@ -25,8 +25,14 @@ class Select_parametrs_for_new_game : AppCompatActivity() {
         val time_number = time.text.toString().takeLast(1)
 
         val start_game = Intent(this, Start_sesssion::class.java)
+
         start_game.putExtra("players", players_number)
         start_game.putExtra("time", time_number)
+
+        start_game.putExtra("v1",getIntent().getBooleanExtra("v1",false))
+        start_game.putExtra("v2",getIntent().getBooleanExtra("v2",false))
+        start_game.putExtra("time_machine",getIntent().getBooleanExtra("time_machine",false))
+
         startActivity(start_game)
     }
 

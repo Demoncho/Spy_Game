@@ -15,6 +15,7 @@ class Timer : AppCompatActivity() {
     lateinit var timer_text: TextView
     lateinit var pause_button: Button
     lateinit var reveal_spy_button: Button
+    lateinit var start_game_button: Button
     internal lateinit var countdown_timer: CountDownTimer
     private var running_timer: Boolean = false
     var time_of_game: Long = 0
@@ -65,20 +66,35 @@ class Timer : AppCompatActivity() {
     fun reveal_list(view : View){
         stop_timer()
         val list_of_places = Intent(this, List_of_places:: class.java  )
+        list_of_places.putExtra("id", getIntent().getStringExtra("id"))
+        list_of_places.putExtra("array",getIntent().getStringArrayListExtra("array"))
         startActivity(list_of_places)
+    }
+
+    fun start_new_game(view : View){
+        val new_game = Intent(this, MainActivity::class.java)
+        startActivity(new_game)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
+
         val time_intent = getIntent()
         time_of_game = time_intent.getStringExtra("time").toLong() * 60000
+
         timer_text = findViewById(R.id.timer_text)
         reveal_spy_button = findViewById(R.id.reveal_spy_button)
         pause_button = findViewById(R.id.pause_button)
+        start_game_button = findViewById(R.id.new_game_button)
+
         pause_button.setOnClickListener {
             reveal_spy_button.visibility = View.VISIBLE
             reveal_spy_button.isClickable = true
+
+            start_game_button.visibility = View.VISIBLE
+            start_game_button.isClickable = true
+
             start_stop()
         }
         update_timer()

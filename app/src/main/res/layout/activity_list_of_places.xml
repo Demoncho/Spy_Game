@@ -27,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
+        android:onClick="start_new_game"
         android:text="@string/start_new_game_button_name"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/end_game_text"
