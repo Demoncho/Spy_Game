@@ -15,6 +15,7 @@ class List_of_places : AppCompatActivity() {
 
     fun start_new_game(view : View){
         val new_game = Intent(this, MainActivity::class.java)
+        new_game.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(new_game)
     }
 
