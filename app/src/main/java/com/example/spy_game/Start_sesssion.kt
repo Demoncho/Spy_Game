@@ -8,6 +8,14 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import android.database.sqlite.SQLiteDatabase
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import java.io.IOException
+import android.database.SQLException
+
 
 class Start_sesssion : AppCompatActivity() {
 
@@ -116,10 +124,28 @@ class Start_sesssion : AppCompatActivity() {
                                                     "Эпидемия черной смерти" to "https://knife.media/wp-content/uploads/2018/11/CHuma-1-1024x717.jpg")
 
 
+    private lateinit var mDBHelper: DatabaseHelper
+    private lateinit var mDb: SQLiteDatabase
+
     fun start_game(players: String, time: String){
         val button = findViewById(R.id.button_get_info) as Button
         val text_number_of_player = findViewById(R.id.text_of_info) as TextView
         val text_place = findViewById(R.id.text_name_of_place) as TextView
+
+        var product = ""
+
+        val cursor = mDb.rawQuery("SELECT * FROM places_v1", null)
+
+        //cursor.moveToFirst()
+        //while (!cursor.isAfterLast) {
+            //product += cursor.getString(1) + " | "
+            //cursor.moveToNext()
+        //}
+        //cursor.close()
+
+        text_place.text = mDBHelper.aaa.toString()
+        //text_place.text = product
+
 
         if(getIntent().getBooleanExtra("v1",false))
             name_of_locations.putAll(name_of_locations_v1_dict)
@@ -147,7 +173,7 @@ class Start_sesssion : AppCompatActivity() {
                     if (button.text == "Получить место") {
                         i++
                         imageView.visibility = View.VISIBLE
-                        text_place.text = game.get_place()
+                        //text_place.text = game.get_place()
                         if (text_place.text == "Шпион")
                             Picasso.get().load(spy_pict.shuffled().first()).into(imageView)
                         else Picasso.get().load(name_of_locations[place_name[place_id]]).into(imageView)
@@ -156,7 +182,7 @@ class Start_sesssion : AppCompatActivity() {
                     else {
                         imageView.visibility = View.INVISIBLE
                         text_number_of_player.text = "Игрок номер: " + i.toString()
-                        text_place.text = ""
+                        //text_place.text = ""
                         button.text = "Получить место"
                     }
                 }
@@ -180,6 +206,22 @@ class Start_sesssion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_sesssion)
+
+        mDBHelper = DatabaseHelper(this)
+
+        /*try {
+            mDBHelper.updateDataBase()
+        } catch (mIOException: IOException) {
+            throw Error("UnableToUpdateDatabase")
+        }*/
+
+
+        /*try {
+            mDb = mDBHelper.writableDatabase
+        } catch (mSQLException: SQLException) {
+            throw mSQLException
+        }*/
+        mDb = mDBHelper.readableDatabase
 
         val params_of_start = getIntent()
 
