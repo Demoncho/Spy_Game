@@ -134,7 +134,7 @@ class Start_sesssion : AppCompatActivity() {
 
         var product = ""
 
-        val cursor = mDb.rawQuery("SELECT * FROM places_v1", null)
+        //val cursor = mDb.rawQuery("SELECT * FROM places_v1", null)
 
         //cursor.moveToFirst()
         //while (!cursor.isAfterLast) {
@@ -143,7 +143,7 @@ class Start_sesssion : AppCompatActivity() {
         //}
         //cursor.close()
 
-        text_place.text = mDBHelper.aaa.toString()
+        //text_place.text = mDBHelper.aaa.toString()
         //text_place.text = product
 
 
@@ -173,7 +173,7 @@ class Start_sesssion : AppCompatActivity() {
                     if (button.text == "Получить место") {
                         i++
                         imageView.visibility = View.VISIBLE
-                        //text_place.text = game.get_place()
+                        text_place.text = game.get_place()
                         if (text_place.text == "Шпион")
                             Picasso.get().load(spy_pict.shuffled().first()).into(imageView)
                         else Picasso.get().load(name_of_locations[place_name[place_id]]).into(imageView)
@@ -182,7 +182,7 @@ class Start_sesssion : AppCompatActivity() {
                     else {
                         imageView.visibility = View.INVISIBLE
                         text_number_of_player.text = "Игрок номер: " + i.toString()
-                        //text_place.text = ""
+                        text_place.text = ""
                         button.text = "Получить место"
                     }
                 }
